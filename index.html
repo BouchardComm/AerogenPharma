@@ -12,6 +12,7 @@
     --line:#d5dae1;
     --card:#ffffff;
     --home:#2f3b4c;
+    --link:#0077C8;
     --section-bg:#eef1f5;
     --radius:8px;
     --gap:20px;
@@ -45,6 +46,12 @@
     border-radius:var(--radius);
     font-weight:600;
     font-size:15px;
+  }
+  /* Root node when it links to a real page */
+  a.home.linked{
+    display:block;
+    background:var(--link);
+    text-decoration:none;
   }
   .home-stem{
     width:2px;height:28px;background:var(--line);margin:0 auto;
@@ -93,6 +100,17 @@
     padding:10px 12px;
   }
 
+  /* A top-level page box that links to a real page */
+  a.node.linked{
+    display:block;
+    text-decoration:none;
+  }
+  .section a.node.level-1.linked{
+    background:var(--link);
+    border-color:var(--link);
+    color:#fff;
+  }
+
   /* Second-level pages */
   .children{
     display:flex;
@@ -132,6 +150,15 @@
     font-size:12.5px;
     padding:3px 0 3px 10px;
   }
+  /* inline bullet that links to a real page */
+  .subnotes li a.bullet-link{
+    color:var(--link);
+    font-weight:600;
+    text-decoration:none;
+  }
+  .subnotes li a.bullet-link:hover{
+    text-decoration:underline;
+  }
   .ext-link{
     display:inline-block;
     vertical-align:-1px;
@@ -158,7 +185,7 @@
   <h1 class="page-title">Aerogen Pharma — Website Map</h1>
 
   <!-- ROOT -->
-  <div class="home">
+  <a class="home linked" href="homepage.html">
     Home
     <div class="content-frame">
       <ul class="subnotes">
@@ -173,7 +200,7 @@
         <li>References</li>
       </ul>
     </div>
-  </div>
+  </a>
   <div class="home-stem"></div>
 
   <!-- TOP-LEVEL SECTIONS (each .section block is self-contained and easy to reposition) -->
@@ -234,7 +261,7 @@
 
     <!-- 2. Our Technology (single page with content blocks) -->
     <div class="section">
-      <div class="node level-1">
+      <a class="node level-1 linked" href="ourTechnology.html">
         Our Technology
         <div class="content-frame">
           <ul class="subnotes">
@@ -249,7 +276,7 @@
             <li>References</li>
           </ul>
         </div>
-      </div>
+      </a>
     </div>
 
     <!-- 3. Pipeline (single page; APC pages branch off as subpages) -->
@@ -347,14 +374,30 @@
       </div>
     </div>
 
-    <!-- 5. Understanding RDS (single page with content blocks) -->
+    <!-- 5. Understanding RDS (top-level page not yet built; sub-pages link directly) -->
     <div class="section">
       <div class="node level-1">
         Understanding RDS
         <div class="content-frame">
           <ul class="subnotes">
-            <li>RDS Overview</li>
-            <li>Treatments &amp; Therapies</li>
+            <li><a class="bullet-link" href="rds-overview.html">RDS Overview</a>
+              <svg class="ext-link" viewBox="0 0 24 24" width="11" height="11" fill="none"
+                   stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                   aria-label="external link" role="img" style="color:var(--link)">
+                <path d="M14 4h6v6"></path>
+                <path d="M20 4l-8.5 8.5"></path>
+                <path d="M18 13.5V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5.5"></path>
+              </svg>
+            </li>
+            <li><a class="bullet-link" href="rds-treatments-therapies.html">Treatments &amp; Therapies</a>
+              <svg class="ext-link" viewBox="0 0 24 24" width="11" height="11" fill="none"
+                   stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                   aria-label="external link" role="img" style="color:var(--link)">
+                <path d="M14 4h6v6"></path>
+                <path d="M20 4l-8.5 8.5"></path>
+                <path d="M18 13.5V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5.5"></path>
+              </svg>
+            </li>
             <li>References</li>
           </ul>
         </div>
@@ -394,7 +437,7 @@
 
     <!-- 8. Contact (single page with content blocks) -->
     <div class="section">
-      <div class="node level-1">
+      <a class="node level-1 linked" href="contact-us.html">
         Contact
         <div class="content-frame">
           <ul class="subnotes">
@@ -403,14 +446,15 @@
             <li>References</li>
           </ul>
         </div>
-      </div>
+      </a>
     </div>
 
   </div>
 
   <p class="legend">
     Each top-level column is a self-contained block &mdash; move or reorder a whole section by relocating its
-    <code>&lt;div class="section"&gt;</code>. Bulleted items under APC-0101 / APC-0201 are page sub-sections.
+    <code>&lt;div class="section"&gt;</code>. Boxes shaded <span style="color:var(--link);font-weight:600;">blue</span>
+    link to a live page; blue bulleted items link directly to their sub-pages.
   </p>
 
 </body>
