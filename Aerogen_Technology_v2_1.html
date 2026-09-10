@@ -1,0 +1,488 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>Aerogen Technology 1A</title>
+<style>
+:root{
+  --aerogen-blue:#0077C8; --sky-blue:#62CAE8; --mint:#93D4CD;
+  --signal-yellow:#FFD100; --deep-navy:#003D50; --white:#FFFFFF;
+  --blue-text:#005E9A; --teal-text:#0E7290; --amber-text:#7E6600; --sky-on-dark:#2FB4FF;
+  --text-primary:#003D50; --text-heading:#005E9A; --text-body:#274451; --text-muted:#6B8794;
+  --surface:#FFFFFF; --surface-tint:#DCEFF8; --surface-navy:#003D50; --border-subtle:#E1E9EF;
+  --grad-aerogen-sky:linear-gradient(120deg,#007CC4,#62CAE8);
+  --grad-white-sky:linear-gradient(120deg,#FFFFFF 0%,#DCEFF8 100%);
+  --grad-navy-aerogen:linear-gradient(120deg,#003D50,#007CC4);
+  --grad-navy-tonal:linear-gradient(140deg,#00293A 0%,#003D50 45%,#00506A 100%);
+  --display:'Montserrat',ui-sans-serif,system-ui,sans-serif;
+  --sans:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+  --space-5:24px; --space-6:32px; --space-7:48px; --space-8:64px;
+  --radius:8px; --radius-lg:12px; --border:1px solid var(--border-subtle);
+  --shadow-card:0 10px 30px rgba(0,61,80,.10); --focus-ring:0 0 0 3px rgba(98,202,232,.6);
+  --maxw:1200px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--white);color:var(--text-body);line-height:1.7;-webkit-font-smoothing:antialiased}
+sup{font-size:.62em;font-weight:600;vertical-align:super}
+:focus-visible{outline:none;box-shadow:var(--focus-ring);border-radius:var(--radius)}
+h1,h2,h3,h4{font-family:var(--display);color:var(--text-primary);line-height:1.18;text-wrap:balance;letter-spacing:-.01em}
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:var(--space-3)}
+.wrap{max-width:var(--maxw);margin:0 auto}
+
+/* NAV (Homepage 1A) */
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);
+  padding:var(--space-4) 5vw;background:rgba(0,28,40,.97);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.1)}
+.brand-logo{display:block;height:26px;width:auto}
+.brand-logo .cls-1{fill:#fff}
+.brand-logo .cls-2{fill:var(--sky-on-dark)}
+footer .brand-logo{height:30px}
+.nav-links{display:flex;gap:var(--space-6);list-style:none;font-size:13.5px;font-weight:500}
+.nav-links a{color:rgba(255,255,255,.82);text-decoration:none}
+.nav-links a:hover{color:#fff}
+
+/* CHIP */
+.chip{display:inline-flex;align-items:stretch;font-weight:600;font-size:14px;text-decoration:none;cursor:pointer;border:none;background:none}
+.chip .chip-label{display:flex;align-items:center;padding:var(--space-3) var(--space-4);background:var(--white);color:var(--aerogen-blue);white-space:nowrap;border-radius:var(--radius) 0 0 var(--radius)}
+.chip .chip-arrow{display:flex;align-items:center;justify-content:center;width:42px;background:var(--signal-yellow);color:var(--deep-navy);border-radius:0 var(--radius) var(--radius) 0}
+.chip .chip-arrow svg{width:16px;height:16px}
+.chip:hover .chip-label{background:#f2f8fc}
+nav .chip{font-size:13px}
+nav .chip .chip-label{padding:var(--space-2) var(--space-4)}
+nav .chip .chip-arrow{width:38px}
+nav .chip .chip-arrow svg{width:15px;height:15px}
+
+/* QUIET LINK */
+.tlink{display:inline-flex;align-items:center;gap:var(--space-2);font-weight:600;font-size:15px;color:var(--blue-text);text-decoration:none;border-bottom:2px solid currentColor;transition:border-color .18s}
+.tlink:hover{border-bottom-color:var(--signal-yellow)}
+.tlink.on-dark{color:var(--sky-on-dark)}
+.tlink svg{width:16px;height:16px}
+
+/* BANDS */
+.band{padding:var(--space-8) 5vw}
+.band.light{background:var(--white)}
+.band.tint{background:var(--surface-tint)}
+.band.navy{position:relative;overflow:hidden;background:var(--grad-navy-tonal);color:#fff}
+.band.navy h2,.band.navy h3,.band.navy h4{color:#fff}
+.band.navy .eyebrow{color:var(--sky-on-dark)}
+.band.navy p{color:rgba(255,255,255,.86)}
+.band.navy::before{content:"";position:absolute;left:-6%;top:-20%;width:40%;height:140%;
+  background:linear-gradient(120deg,rgba(98,202,232,0),rgba(98,202,232,.13),rgba(98,202,232,0));transform:skewX(-14deg);pointer-events:none}
+
+/* HERO — light "blade" background (Hero Lab 1); content left, clean blade right */
+.hero{position:relative;overflow:hidden;background:var(--grad-white-sky);color:var(--text-primary);
+  display:flex;align-items:center;min-height:600px;padding:var(--space-8) 5vw}
+/* prism light stripes (z1) */
+.hero::before{content:"";position:absolute;top:-12%;right:-6%;width:58%;height:132%;
+  background:linear-gradient(120deg,rgba(98,202,232,0) 0%,rgba(98,202,232,.30) 50%,rgba(98,202,232,0) 72%);transform:skewX(-14deg);pointer-events:none;z-index:1}
+.hero::after{content:"";position:absolute;top:-12%;right:14%;width:20%;height:132%;
+  background:linear-gradient(120deg,rgba(0,124,196,0),rgba(0,124,196,.18),rgba(0,124,196,0));transform:skewX(-14deg);pointer-events:none;z-index:1}
+/* angled aerogen-sky blade (z2) */
+.hero .blade{position:absolute;inset:0 0 0 auto;width:42%;z-index:2;
+  background:var(--grad-aerogen-sky);clip-path:polygon(16% 0,100% 0,100% 100%,0 100%)}
+/* animated mist (z3) */
+.hero canvas.mist{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.9;z-index:3}
+/* content (z4) */
+.hero-inner{position:relative;z-index:4;width:100%;max-width:var(--maxw);margin:0 auto}
+.hero-content{max-width:620px}
+.hero .eyebrow{color:var(--blue-text)}
+.hero h1{color:var(--text-primary);font-family:var(--display);font-weight:700;letter-spacing:-.02em;line-height:1.08;margin-bottom:var(--space-5);font-size:clamp(32px,4.4vw,54px);text-wrap:balance}
+.hero p{color:var(--text-body);font-size:15.5px;line-height:1.6;max-width:52ch;margin-bottom:var(--space-4)}
+.hero p:last-of-type{margin-bottom:var(--space-6)}
+.hero p sup{color:var(--blue-text);font-weight:600}
+
+/* PROSE CONTENT */
+.tc{max-width:920px;margin:0 auto}
+.tc.wide{max-width:var(--maxw)}
+.tc h2{font-size:clamp(26px,3vw,36px);font-weight:700;margin-bottom:var(--space-4)}
+.tc h3{font-size:clamp(18px,2vw,21px);font-weight:600;color:var(--text-heading);margin:var(--space-6) 0 var(--space-3)}
+.band.navy .tc h3{color:var(--sky-on-dark)}
+.tc h2 + h3{margin-top:var(--space-4)}
+.tc p{font-size:16px;color:var(--text-body);margin-bottom:var(--space-4)}
+.band.navy .tc p{color:rgba(255,255,255,.86)}
+
+/* BULLET LIST — brand blue markers */
+.blist{list-style:none;margin:var(--space-4) 0 var(--space-5);display:grid;gap:var(--space-3)}
+.blist li{position:relative;padding-left:var(--space-6);font-size:16px;color:var(--text-body);max-width:70ch}
+.blist li::before{content:"→";position:absolute;left:0;top:0;color:var(--aerogen-blue);font-weight:700;line-height:1.7}
+.blist.two{grid-template-columns:1fr 1fr;gap:var(--space-3) var(--space-6)}
+
+/* ATTR PILLS — icon chips (ported from homepage; placeholder icons) */
+.attrs{display:flex;flex-wrap:wrap;gap:var(--space-3);margin:var(--space-4) 0 var(--space-5)}
+.attrs .a{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3) var(--space-4);border:var(--border);border-radius:40px;background:var(--white);font-size:14px;font-weight:500;color:var(--text-body);box-shadow:var(--shadow-card)}
+.attrs .a svg{width:16px;height:16px;flex:none;color:var(--aerogen-blue)}
+
+/* COMPARISON TABLE */
+.table-scroll{overflow-x:auto;margin:var(--space-5) 0;border-radius:var(--radius-lg);border:var(--border);box-shadow:var(--shadow-card)}
+.ctable{width:100%;border-collapse:collapse;font-size:14.5px;min-width:640px;background:var(--white)}
+.ctable th{background:var(--deep-navy);color:#fff;text-align:left;padding:var(--space-4);font-family:var(--display);font-weight:600;font-size:14px}
+.ctable th:last-child{background:#004a63}
+.ctable td{padding:var(--space-4);border-top:1px solid var(--border-subtle);color:var(--text-body);line-height:1.55;vertical-align:top}
+.ctable td:first-child{font-weight:600;color:var(--text-primary);font-family:var(--display);font-size:13.5px}
+.ctable td:last-child{background:rgba(220,239,248,.5)}
+.ctable tbody tr:hover td{background:rgba(220,239,248,.7)}
+.ctable tbody tr:hover td:first-child{background:var(--surface-tint)}
+
+/* NOTE BOX */
+.note{padding:var(--space-5);background:var(--surface-tint);border-left:3px solid var(--signal-yellow);border-radius:0 var(--radius) var(--radius) 0;font-size:14.5px;color:var(--text-body);line-height:1.6;margin:var(--space-5) 0}
+.note strong{color:var(--text-primary)}
+
+/* CARD GRIDS */
+.cardgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5);margin-top:var(--space-6)}
+.tcard{background:var(--white);border:var(--border);border-radius:var(--radius-lg);padding:var(--space-6);box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:var(--space-3)}
+.band.tint .tcard{background:var(--white)}
+.tcard .tci{width:44px;height:44px;border-radius:10px;background:var(--surface-tint);color:var(--aerogen-blue);display:flex;align-items:center;justify-content:center;margin-bottom:var(--space-1)}
+.tcard .tci svg{width:22px;height:22px}
+.tcard h4{font-size:16px;font-weight:600;line-height:1.3}
+.tcard p{font-size:14px;color:var(--text-body);line-height:1.6}
+/* keep white cards legible when the band is dark (navy overrides all headings/p white) */
+.band.navy .tcard{background:var(--white)}
+.band.navy .tcard h4{color:var(--text-primary)}
+.band.navy .tcard p{color:var(--text-body)}
+
+/* SPLIT + IMAGE PLACEHOLDER (ported from homepage) */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-8);align-items:stretch;margin-bottom:var(--space-7)}
+.split .copy > :first-child,.split .adv > :first-child{margin-top:0}
+.split .copy > :last-child,.split .adv > :last-child{margin-bottom:0}
+.split .m.white{background:var(--white)}
+.split .m{position:relative;min-height:400px;border-radius:var(--radius-lg);overflow:hidden;background:var(--surface-tint);
+  border:var(--border);display:flex;align-items:center;justify-content:center;color:var(--blue-text);font-family:var(--mono);font-size:12px;letter-spacing:.06em;box-shadow:var(--shadow-card)}
+.split .m span{padding:0 var(--space-4);text-align:center}
+.split .m::after{content:"";position:absolute;right:-30px;top:-30px;width:150px;height:150px;background:var(--signal-yellow);opacity:.85;clip-path:polygon(0 0,100% 0,100% 100%)}
+
+/* CLOSING CTA */
+.tc .cta-row{margin-top:var(--space-6);display:flex;gap:var(--space-5);align-items:center;flex-wrap:wrap}
+
+/* REFERENCES */
+.refs .tc h2{font-size:22px;font-weight:700;margin-bottom:var(--space-5)}
+/* collapsible references (native <details>) */
+.refs-toggle summary{list-style:none;display:inline-flex;align-items:center;gap:var(--space-3);cursor:pointer;
+  font-family:var(--display);font-weight:700;color:var(--text-primary);font-size:22px;line-height:1.2;margin-bottom:var(--space-5)}
+.refs-toggle summary::-webkit-details-marker{display:none}
+.refs-toggle summary:focus-visible{outline:none;box-shadow:var(--focus-ring);border-radius:var(--radius)}
+.refs-caret{width:20px;height:20px;flex:none;color:var(--blue-text);transition:transform .2s ease}
+.refs-toggle[open] summary .refs-caret{transform:rotate(180deg)}
+.refs-toggle:not([open]) summary{margin-bottom:0}
+.reflist{display:grid;gap:var(--space-3)}
+.reflist .r{font-size:12px;color:var(--text-body);line-height:1.6;padding-left:var(--space-5);text-indent:calc(var(--space-5) * -1);max-width:none}
+.reflist .r a{color:var(--blue-text);text-decoration:none}
+.reflist .r a:hover{text-decoration:underline}
+
+/* FOOTER (Homepage 1A) */
+footer{background:#00212f;color:rgba(255,255,255,.72);position:relative;overflow:hidden;padding:var(--space-8) 5vw var(--space-6)}
+footer::after{content:"";position:absolute;right:-60px;bottom:-60px;width:340px;height:340px;background:linear-gradient(120deg,#00293A,#00506A);clip-path:polygon(0 0,100% 0,100% 100%);opacity:.6}
+.fgrid{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:var(--space-6)}
+.fbrand p{font-size:13px;margin-top:var(--space-3);max-width:34ch}
+.fcol h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--sky-on-dark);margin-bottom:var(--space-4);font-weight:500}
+.fcol a{display:block;color:rgba(255,255,255,.78);text-decoration:none;font-size:13.5px;margin-bottom:var(--space-3)}
+.fcol a:hover{color:#fff}
+.fbot{position:relative;z-index:2;max-width:var(--maxw);margin:var(--space-7) auto 0;padding-top:var(--space-5);border-top:1px solid rgba(255,255,255,.15);font-size:12px;color:rgba(255,255,255,.55);display:flex;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap}
+
+@media (max-width:980px){
+  .nav-links{display:none}
+  .hero{min-height:0;padding-top:var(--space-7);padding-bottom:calc(52vw + var(--space-7))}
+  .hero .blade{width:100%;height:44%;inset:auto 0 0 0;clip-path:polygon(0 22%,100% 0,100% 100%,0 100%)}
+  .hero-content{max-width:none}
+  .split{grid-template-columns:1fr;gap:var(--space-6)}
+  .split .m{min-height:260px}
+  .cardgrid{grid-template-columns:1fr 1fr}
+  .blist.two{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){.cardgrid{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero canvas{display:none}}
+</style>
+
+<nav>
+  <a href="Aerogen_Homepage_v2.html" aria-label="Aerogen Pharma — home" style="display:flex">
+    <svg class="brand-logo" role="img" aria-label="Aerogen Pharma" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 603.47 70.8">
+      <path class="cls-2" d="M351.96,14.15h-10.8v19.03h10.8c7.02,0,11.4-3.85,11.4-9.52,0-6.27-4.46-9.52-11.4-9.52M351.66,41.57h-10.5v16.99h-9.29V5.69h20.85c12.31,0,20.09,6.95,20.09,17.75,0,11.93-9.52,18.13-21.15,18.13"/>
+      <path class="cls-2" d="M389.71,58.56h-9.14V3.43h9.14v21.45c2.57-3.78,6.27-7.02,12.46-7.02,8.99,0,14.2,6.04,14.2,15.33v25.38h-9.14v-22.66c0-6.19-3.1-9.74-8.53-9.74s-8.99,3.7-8.99,9.89v22.51Z"/>
+      <path class="cls-2" d="M451.48,41.64c-2.34-.91-5.59-1.58-9.14-1.58-5.74,0-9.14,2.34-9.14,6.42v.15c0,3.78,3.4,5.89,7.7,5.89,6.04,0,10.57-3.4,10.57-8.38v-2.49ZM451.25,58.56v-4.91c-2.72,3.25-6.87,5.74-12.91,5.74-7.55,0-14.2-4.31-14.2-12.31v-.15c0-8.61,6.87-12.84,16.16-12.84,4.83,0,7.93.68,11.03,1.66v-.98c0-5.51-3.47-8.54-9.82-8.54-4.46,0-7.78.98-11.4,2.49l-2.49-7.33c4.38-1.96,8.68-3.32,15.18-3.32,11.78,0,17.52,6.19,17.52,16.84v23.64h-9.06Z"/>
+      <path class="cls-2" d="M477.21,58.56h-9.14V18.68h9.14v8.99c2.49-5.97,7.1-10.04,14.12-9.74v9.67h-.53c-8.01,0-13.59,5.21-13.59,15.78v15.18Z"/>
+      <path class="cls-2" d="M545.78,17.85c8.68,0,13.97,5.51,13.97,15.26v25.45h-9.14v-22.66c0-6.34-2.95-9.74-8.08-9.74s-8.53,3.47-8.53,9.89v22.51h-9.14v-22.73c0-6.19-3.02-9.67-8.08-9.67s-8.53,3.78-8.53,9.97v22.43h-9.14V18.68h9.14v6.04c2.57-3.55,6.04-6.87,12.16-6.87,5.74,0,9.74,2.8,11.86,7.02,3.25-4.23,7.48-7.02,13.52-7.02"/>
+      <path class="cls-2" d="M594.63,41.64c-2.34-.91-5.59-1.58-9.14-1.58-5.74,0-9.14,2.34-9.14,6.42v.15c0,3.78,3.4,5.89,7.7,5.89,6.04,0,10.57-3.4,10.57-8.38v-2.49ZM594.41,58.56v-4.91c-2.72,3.25-6.87,5.74-12.91,5.74-7.55,0-14.2-4.31-14.2-12.31v-.15c0-8.61,6.87-12.84,16.16-12.84,4.83,0,7.93.68,11.03,1.66v-.98c0-5.51-3.47-8.54-9.82-8.54-4.46,0-7.78.98-11.4,2.49l-2.49-7.33c4.38-1.96,8.68-3.32,15.18-3.32,11.78,0,17.52,6.19,17.52,16.84v23.64h-9.06Z"/>
+      <path class="cls-1" d="M308.13,22.07h-.38v-1.22h.38c.82,0,1.44,0,1.44.6s-.6.63-1.44.63M309.32,22.68v-.02c.95-.13,1.25-.76,1.25-1.26,0-.38-.16-.76-.49-1-.36-.26-.62-.26-2.33-.26h-.93v4.51h.93v-1.86h.24c.46,0,.76.07,1.31,1.11l.38.74h1.16l-.55-.92c-.41-.68-.55-.9-.97-1.05"/>
+      <path class="cls-1" d="M308.8,25.77c-1.94,0-3.51-1.52-3.51-3.4s1.57-3.41,3.51-3.41,3.49,1.52,3.49,3.41-1.56,3.4-3.49,3.4M308.8,18.13c-2.41,0-4.37,1.89-4.37,4.24s1.96,4.25,4.37,4.25,4.35-1.9,4.35-4.25-1.95-4.24-4.35-4.24"/>
+      <path class="cls-1" d="M302.27,58.56v-25.46c0-9.22-5.21-15.26-14.2-15.26-6.2,0-9.9,3.25-12.47,6.95v-6.12h-9.14v39.9h9.14v-22.52c0-6.2,3.7-9.9,8.99-9.9s8.54,3.55,8.54,9.75v22.67h9.14ZM258.6,41.86c.08-.91.15-1.74.15-2.57,0-11.49-6.42-21.46-19.12-21.46-11.41,0-19.49,9.37-19.49,20.78v.15c0,12.32,8.92,20.7,20.48,20.7,7.33,0,12.54-2.95,16.32-7.48l-5.37-4.76c-3.17,3.1-6.35,4.76-10.8,4.76-5.89,0-10.5-3.63-11.49-10.12h29.32ZM249.68,35.82h-20.48c.83-6.2,4.76-10.5,10.35-10.5,6.04,0,9.52,4.61,10.12,10.5M207.29,65.44c3.32-3.33,5.06-8.31,5.06-15.04v-31.74h-9.14v5.97c-3.1-3.7-7.25-6.8-13.98-6.8-9.3,0-18.14,6.95-18.14,18.74v.15c0,11.71,8.76,18.66,18.14,18.66,6.57,0,10.73-3.02,14.05-7.33v3.1c0,8.01-4.46,12.24-12.62,12.24-5.44,0-9.9-1.59-14.21-4.23l-3.4,6.87c5.14,3.1,11.26,4.76,17.83,4.76,7.18,0,12.77-1.74,16.4-5.36M203.36,36.65c0,6.5-5.36,10.96-11.71,10.96s-11.33-4.46-11.33-10.96v-.15c0-6.57,4.99-10.96,11.33-10.96s11.71,4.46,11.71,10.96v.15ZM165.36,38.69v-.15c0-11.41-8.99-20.71-21.23-20.71s-21.31,9.45-21.31,20.86v.15c0,11.33,8.99,20.63,21.16,20.63s21.38-9.45,21.38-20.78M156.21,38.84c0,6.88-4.68,12.62-12.09,12.62s-12.17-5.82-12.17-12.77v-.15c0-6.95,4.68-12.69,12.01-12.69s12.24,5.82,12.24,12.85v.15ZM119.41,27.58h.53v-9.67c-7.03-.3-11.64,3.78-14.13,9.75v-8.99h-9.14v39.9h9.14v-15.19c0-10.58,5.59-15.79,13.6-15.79M88.81,41.86c.08-.91.15-1.74.15-2.57,0-11.49-6.42-21.46-19.12-21.46-11.41,0-19.49,9.37-19.49,20.78v.15c0,12.32,8.92,20.7,20.48,20.7,7.33,0,12.54-2.95,16.32-7.48l-5.36-4.76c-3.17,3.1-6.35,4.76-10.81,4.76-5.89,0-10.5-3.63-11.49-10.12h29.32ZM79.9,35.82h-20.48c.83-6.2,4.76-10.5,10.35-10.5,6.04,0,9.52,4.61,10.13,10.5M0,58.56h9.02l5.73-16.72h19.12l5.73,16.72h9.01L28.47,0h-8.33L0,58.56ZM31.8,35.8h-14.98l7.49-21.86,7.49,21.86Z"/>
+    </svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Our Company</a></li>
+    <li><a href="Aerogen_Technology_v2.html">Our Technology</a></li>
+    <li><a href="#">Pipeline</a></li>
+    <li><a href="#">Understanding RDS</a></li>
+    <li><a href="#">Newsroom</a></li>
+    <li><a href="#">Culture &amp; Careers</a></li>
+  </ul>
+  <a href="#" class="chip"><span class="chip-label">Contact Us</span><span class="chip-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="blade"></div>
+  <canvas class="mist" id="mist" data-col="0,110,180"></canvas>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="eyebrow">Technology Platform</div>
+      <h1>Precision Aerosol Delivery for the Most Vulnerable Patients</h1>
+      <p>Aerogen Pharma is advancing an investigational aerosol drug delivery platform intended for critically ill patients, including very low birth weight preterm infants.<sup>1,2,5,7</sup></p>
+      <p>Built on decades of innovation in aerosol science, our proprietary technology is designed to support efficient, consistent, and targeted inhaled drug delivery in care settings where accurate dosing can be clinically meaningful.<sup>7,8</sup></p>
+      <p>Our platform combines vibrating mesh nebulization, breath-synchronized aerosol delivery, and a patient-centered interface design to address longstanding challenges associated with delivering medicines to the lung during respiratory support.<sup>5,7,8,10</sup></p>
+      <a href="#components" class="chip"><span class="chip-label">Explore the platform**</span><span class="chip-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</header>
+
+<!-- THE CHALLENGE -->
+<section class="band tint">
+  <div class="tc">
+    <div class="eyebrow">The Challenge</div>
+    <h2>Why is Aerosol Drug Delivery So Challenging?</h2>
+    <h3>Delivering Aerosol Medicines Is More Complex Than It Appears</h3>
+    <p>Inhaled therapies can deliver medication directly to the lungs, which may decrease systemic exposure and can increase effectiveness when localized effect drives efficacy. However, reliable and reproducible lung dosing can be challenging, particularly in critically ill patients and very small infants.<sup>7,8,12</sup></p>
+    <p>Drug delivery efficiency can be affected by numerous variables, including:<sup>6-9</sup></p>
+    <!-- placeholder icons — swap for final iconography when chosen -->
+    <div class="attrs">
+      <span class="a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>Patient size</span>
+      <span class="a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4-8 4-8-4 8-4z"/><path d="M4 11l8 4 8-4"/><path d="M4 15l8 4 8-4"/></svg>Respiratory support modality and patient interface</span>
+      <span class="a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 21v-6M4 11V3M12 21v-8M12 9V3M20 21v-4M20 13V3"/><path d="M1.5 15h5M9.5 9h5M17.5 13h5"/></svg>Respiratory support settings</span>
+      <span class="a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3.5s6 5.7 6 10.1a6 6 0 1 1-12 0C6 9.2 12 3.5 12 3.5z"/></svg>Nebulizer technology</span>
+      <span class="a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12h5l2.5-7 4 14 2.5-7H22"/></svg>Patient breathing patterns</span>
+      <span class="a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="19" cy="19" r="2"/><path d="M7 12h5M12 12l5-6M12 12l5 6"/></svg>Circuit configuration</span>
+      <span class="a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8c3 2.2 6 2.2 9 0s6-2.2 9 0"/><path d="M3 13c3 2.2 6 2.2 9 0s6-2.2 9 0"/><path d="M3 18c3 2.2 6 2.2 9 0s6-2.2 9 0"/></svg>Humidification systems</span>
+      <span class="a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Aerosol generator placement</span>
+    </div>
+    <p>As a result, the amount of medication that reaches the lungs can vary from patient to patient and across respiratory-support configurations.<sup>6-8</sup></p>
+    <h3>Lung Delivery in the Smallest Patients</h3>
+    <p>Small airways, low tidal volumes, rapid respiratory rates, and preferential nasal breathing make aerosol delivery especially challenging in preterm infants. Published studies report very low lung deposition for some less-optimized neonatal aerosol configurations (1 - 10%), while optimized mesh, breath-actuated, and nasal-interface approaches have been developed to increase lung delivery (30 - 50%) in preclinical, bench, and early clinical studies.<sup>3,5-7,9,10</sup></p>
+    <h3>Aerosol Loss During Continuous Nebulization</h3>
+    <p>With continuous nebulization, aerosol generated when an infant is not inhaling can be lost to the ventilator circuit or exhalation pathway, limiting the inhaled dose to as little as 1 - 10% of the total aerosol produced. Breath-synchronized aerosol generation is designed to deliver aerosol during inspiration, helping reduce expiratory drug loss and improve delivery efficiency. This approach results in up to 5-fold more emitted drug being inhaled compared with historical continuous nebulizer approaches.<sup>6,7,10</sup></p>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="band light">
+  <div class="tc">
+    <div class="eyebrow">Comparison</div>
+    <h2>How Is the Aerogen Pharma Aerosol Drug Delivery Platform Different?</h2>
+    <h3>The Difference Is in the Details</h3>
+    <div class="table-scroll">
+      <table class="ctable">
+        <thead>
+          <tr><th>Feature</th><th>Conventional Nebulizer</th><th>Aerogen Pharma Platform</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Aerosol Particle Size</td><td>5–7 μm MMAD</td><td>&lt;3 μm MMAD<sup>6,7,9</sup></td></tr>
+          <tr><td>Nasal Loss</td><td>Up to 80%<sup>10</sup></td><td>&lt;20%</td></tr>
+          <tr><td>Aerosol Generation</td><td>Continuous output</td><td>Breath-synchronized during the first 80% of inspiration<sup>10</sup></td></tr>
+          <tr><td>Aerosol Placement</td><td>Positioned within the respiratory circuit</td><td>Positioned directly at the nasal prongs<sup>9</sup></td></tr>
+          <tr><td>Lung Delivery</td><td>Less than 1% reaches the lungs in very low birth weight infants<sup>10</sup></td><td>Greater than 30% delivered past the upper airway to the lungs</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><strong>Scientific support note:</strong> The cited peer-reviewed literature supports the comparative mechanisms and direction of effect shown in this analysis. Exact Aerogen Pharma device-specific performance values should also be supported by the applicable Aerogen verification/validation reports or regulatory documentation.</div>
+    <p>Continuous nebulization can lose aerosol during exhalation and within respiratory circuits, and larger particles are more likely to deposit in the upper airway. In infant and preterm-infant models, smaller particles less than approximately 3 microns have been associated with lower nasal deposition and greater lung delivery than larger particles.<sup>6,7,9</sup></p>
+    <p>Peer-reviewed descriptions of AeroFact and PDAP-based systems report fine aerosols in the approximately 2-3 micron or less than 3 micron range, a particle-size profile intended to support distal pulmonary delivery.<sup>5,10,11</sup></p>
+    <p>Respiratory support systems such as nasal CPAP rely on humidified gas flow and patient interfaces that can dilute aerosol or increase circuit and interface losses. Placing aerosol generation directly at the nasal prongs is one strategy studied to reduce these losses and improve delivery efficiency.<sup>5-9</sup></p>
+    <p>For established therapies where dosing is adjusted based on clinical response, some variability may be managed clinically. For novel drug-device combination products, biologics, and precision therapies, consistent pulmonary delivery is especially important.<sup>8,12,13</sup></p>
+    <p>Aerogen Pharma's technology platform is designed to increase delivery efficiency to the lung, reduce variability, and support confidence in pulmonary drug delivery in critical care environments.<sup>5,7,8,10</sup></p>
+  </div>
+</section>
+
+<!-- PLATFORM COMPONENTS -->
+<section class="band navy" id="components">
+  <div class="tc wide">
+    <div class="eyebrow">Platform Design</div>
+    <h2>How Does the Aerogen Pharma Aerosol Drug Delivery Platform Work?</h2>
+    <h3>Designed for Precision. Engineered for Performance.</h3>
+    <p>Aerogen Pharma's investigational delivery system combines three integrated components:</p>
+    <div class="cardgrid">
+      <div class="tcard">
+        <span class="tci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></span>
+        <h4>Proprietary Vibrating Mesh Nebulizer</h4>
+        <p>A precision-engineered single-patient-use vibrating mesh nebulizer with a proprietary architecture designed to generate highly respirable aerosol particles for pulmonary delivery to infants.<sup>5,7,10,11</sup></p>
+      </div>
+      <div class="tcard">
+        <span class="tci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg></span>
+        <h4>Intelligent Controller</h4>
+        <p>A reusable controller intended to automate aerosol delivery, monitor dosing, and synchronize drug administration with the patient's breathing pattern.<sup>5,10,11</sup></p>
+      </div>
+      <div class="tcard">
+        <span class="tci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6z"/><circle cx="12" cy="12" r="2.5"/></svg></span>
+        <h4>Advanced Patient Interfaces</h4>
+        <p>Custom-designed interfaces position aerosol generation close to the patient's airway, a strategy intended to reduce medication loss and improve delivery efficiency.<sup>5-7,9</sup></p>
+      </div>
+    </div>
+    <p style="margin-top:var(--space-6)">Together, these components create an integrated platform designed to support reproducible aerosol delivery across patient populations and respiratory-support environments.<sup>5,8,10</sup></p>
+  </div>
+</section>
+
+<!-- PDAP TECHNOLOGY -->
+<section class="band light">
+  <div class="tc wide">
+    <div class="split">
+      <div class="copy">
+        <div class="eyebrow">Core Technology</div>
+        <h2>What is PDAP™ Technology?</h2>
+        <h3>The Engine Behind the Platform</h3>
+        <p>At the core of Aerogen Pharma's technology is its proprietary Photo-Defined Aperture Plate (PDAP™) technology.</p>
+        <p>PDAP is a next-generation vibrating mesh platform intended to provide greater control over aerosol generation and delivery performance.<sup>10,11</sup></p>
+        <p>The PDAP consists of a precision-engineered dual-layer mesh architecture containing thousands of microscopic apertures that, when vibrated at 128,000 cycles per second, transform viscous, liquid formulations into highly respirable aerosol particles (2 - 3 micron).<sup>10,11</sup></p>
+        <p>This design enables control of aerosol characteristics, including droplet size and output rate, to support delivery of challenging inhaled therapies.<sup>7,10,11</sup></p>
+      </div>
+      <div class="m"><span>[ PDAP mesh / aerosol generation image ]</span></div>
+    </div>
+    <div class="split">
+      <div class="m white"><span>[ PDAP advantages image ]</span></div>
+      <div class="adv">
+        <h3>Potential Advantages of PDAP Technology</h3>
+        <ul class="blist">
+          <li>Generation of highly respirable aerosol particles optimized for lung delivery<sup>5,7,10,11</sup></li>
+          <li>Potential to aerosolize viscous solutions and suspensions<sup>7,12,13</sup></li>
+          <li>Rapid on-off aerosol generation during each breath, a feature particularly relevant for patients with fast respiratory rates such as infants<sup>5,10</sup></li>
+          <li>Potential to improve delivery efficiency for complex and high-cost formulations<sup>7,8,10,12,13</sup></li>
+          <li>Potential compatibility with biologics, proteins, peptides, nucleic acids, and other advanced therapeutics<sup>12,13</sup></li>
+          <li>Designed to support consistent and reproducible dosing<sup>8,10</sup></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUTURE THERAPIES -->
+<section class="band tint">
+  <div class="tc">
+    <div class="eyebrow">Future Applications</div>
+    <h2>How Does the Platform Support Future Inhaled Therapies?</h2>
+    <h3>Expanding the Possibilities of Inhaled Drug Delivery</h3>
+    <p>Aerosol delivery to preterm and newborn infants remains technically challenging. Many promising therapies were not originally developed for inhaled administration and can be difficult to aerosolize effectively, particularly when formulations have complex physicochemical properties.<sup>3,7,12,13</sup></p>
+    <p>Aerogen Pharma's platform was designed to support delivery of challenging formulations that may have characteristics such as:<sup>7,12,13</sup></p>
+    <ul class="blist two">
+      <li>High viscosity<sup>12,13</sup></li>
+      <li>Low surface tension<sup>12,13</sup></li>
+      <li>Large molecular size<sup>12,13</sup></li>
+      <li>Complex biologic structures<sup>12,13</sup></li>
+    </ul>
+    <p>The AeroFact Delivery System capabilities are being studied through the APC-0101 Development Program, where PDAP technology is being evaluated as part of an investigational non-invasive aerosolized surfactant drug-device combination approach for preterm infants with respiratory distress syndrome.<sup>4,5</sup></p>
+  </div>
+</section>
+
+<!-- KEY PLATFORM FEATURES -->
+<section class="band light">
+  <div class="tc wide">
+    <div class="eyebrow">Platform Features</div>
+    <h2>Key Platform Features</h2>
+    <div class="cardgrid">
+      <div class="tcard">
+        <span class="tci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2"/></svg></span>
+        <h4>Precision Aerosol Generation</h4>
+        <p>Produces highly respirable aerosol particles in the approximately 1-3 micron range, a size range commonly targeted for efficient pulmonary delivery.<sup>5-7,10,11</sup></p>
+      </div>
+      <div class="tcard">
+        <span class="tci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></span>
+        <h4>Breath-Synchronized Delivery</h4>
+        <p>The aerosol particle generation is coordinated with the first milliseconds of patient inspiration to maximize lung deposition and minimize waste during exhalation.<sup>5,10,11</sup></p>
+      </div>
+      <div class="tcard">
+        <span class="tci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.5-7-10a4 4 0 018-1 4 4 0 018 1c0 5.5-7 10-7 10z"/></svg></span>
+        <h4>Airway-Level Aerosol Generation</h4>
+        <p>Places aerosol production close to the patient interface to reduce losses within the respiratory circuit.<sup>5-7,9</sup></p>
+      </div>
+      <div class="tcard">
+        <span class="tci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4"/><circle cx="12" cy="12" r="3"/></svg></span>
+        <h4>Automated Dosing Control</h4>
+        <p>Provides clinicians with standardized and reproducible aerosol administration.<sup>8,10</sup></p>
+      </div>
+      <div class="tcard">
+        <span class="tci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+        <h4>Modular Platform Architecture</h4>
+        <p>Designed for use across multiple drug candidates, disease states, and patient populations.<sup>8,12,13</sup></p>
+      </div>
+      <div class="tcard">
+        <span class="tci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h10"/></svg></span>
+        <h4>Compatibility Across Care Settings</h4>
+        <p>Engineered for use across respiratory support modalities, including non-invasive respiratory support and mechanical ventilation.<sup>5,8,11</sup></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUTURE VISION (navy closing beat) -->
+<section class="band navy">
+  <div class="tc">
+    <div class="eyebrow">The Vision</div>
+    <h2>Enabling the Future of Inhaled Therapeutics</h2>
+    <p>Aerogen Pharma is applying its proprietary aerosol delivery technology to develop drug-device combination products for serious respiratory diseases.<sup>3-5,7</sup></p>
+    <p>By combining aerosol engineering and trusted treatment options with clinically meaningful therapeutic targets, we aim to unlock new possibilities for inhaled medicines and support the development of therapies for neonatal patients with critical respiratory conditions.<sup>3,7,8,12,13</sup></p>
+    <div class="cta-row">
+      <a href="#" class="chip"><span class="chip-label">Explore Our Pipeline*</span><span class="chip-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section class="band light refs">
+  <div class="tc wide">
+    <details class="refs-toggle" open>
+      <summary>References<svg class="refs-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+    <div class="reflist">
+      <div class="r">1. Sweet DG, Carnielli VP, Greisen G, Hallman M, Ozek E, te Pas A, et al. European consensus guidelines on the management of respiratory distress syndrome: 2022 update. Neonatology. 2023;120(1):3-23. doi:<a href="https://doi.org/10.1159/000528914">10.1159/000528914</a></div>
+      <div class="r">2. Ekhaguere OA, Okonkwo IR, Batra M, Hedstrom AB. Respiratory distress syndrome management in resource limited settings: current evidence and opportunities in 2022. Front Pediatr. 2022;10:961509. doi:<a href="https://doi.org/10.3389/fped.2022.961509">10.3389/fped.2022.961509</a></div>
+      <div class="r">3. Rao S, Edmond K, Bahl R. Target product profile: aerosolized surfactant for neonatal respiratory distress. Bull World Health Organ. 2023;101(5):341-345. doi:<a href="https://doi.org/10.2471/BLT.23.289727">10.2471/BLT.23.289727</a></div>
+      <div class="r">4. Jardine L, Lui K, Liley HG, et al. Trial of aerosolised surfactant for preterm infants with respiratory distress syndrome. Arch Dis Child Fetal Neonatal Ed. 2022;107(1):51-55. doi:<a href="https://doi.org/10.1136/archdischild-2021-321645">10.1136/archdischild-2021-321645</a></div>
+      <div class="r">5. Lategan I, Durand D, Harrison M, et al. A multicentre neonatal interventional randomised controlled trial of nebulized surfactant for preterm infants with respiratory distress: Neo-INSPIRe trial protocol. BMC Pediatr. 2023;23(1):472. doi:<a href="https://doi.org/10.1186/s12887-023-04296-4">10.1186/s12887-023-04296-4</a></div>
+      <div class="r">6. Walther FJ, Waring AJ. Aerosol delivery of lung surfactant and nasal CPAP in the treatment of neonatal respiratory distress syndrome. Front Pediatr. 2022;10:923010. doi:<a href="https://doi.org/10.3389/fped.2022.923010">10.3389/fped.2022.923010</a></div>
+      <div class="r">7. Ari A, Rubin BK, Fink JB. Mesh nebulizers enabling transnasal pulmonary delivery of medical aerosols to infants and toddlers: roles, challenges, and opportunities. Front Drug Deliv. 2022;2:995489. doi:<a href="https://doi.org/10.3389/fddev.2022.995489">10.3389/fddev.2022.995489</a></div>
+      <div class="r">8. Li J, Liu K, Lyu S, et al. Aerosol therapy in adult critically ill patients: a consensus statement regarding aerosol administration strategies during various modes of respiratory support. Ann Intensive Care. 2023;13(1):63. doi:<a href="https://doi.org/10.1186/s13613-023-01147-4">10.1186/s13613-023-01147-4</a></div>
+      <div class="r">9. Bass K, Momin MAM, Howe C, Aladwani G, Strickler S, Kolanjiyil AV, et al. Characterizing the effects of nasal prong interfaces on aerosol deposition in a preterm infant nasal model. AAPS PharmSciTech. 2022;23(5):114. doi:<a href="https://doi.org/10.1208/s12249-022-02259-z">10.1208/s12249-022-02259-z</a></div>
+      <div class="r">10. DiBlasi RM, Micheletti KJ, Zimmerman JD, Poli JA, Fink JB, Kajimoto M. Physiologic effects of instilled and aerosolized surfactant using a breath-synchronized nebulizer on surfactant-deficient rabbits. Pharmaceutics. 2021;13(10):1580. doi:<a href="https://doi.org/10.3390/pharmaceutics13101580">10.3390/pharmaceutics13101580</a></div>
+      <div class="r">11. Dushianthan A, Clark HW, Brealey D, Cusack R, Goss V, Knapp S, et al. A randomized controlled trial of nebulized surfactant for the treatment of severe COVID-19 in adults (COVSurf trial). Sci Rep. 2023;13(1):20946. doi:<a href="https://doi.org/10.1038/s41598-023-47672-x">10.1038/s41598-023-47672-x</a></div>
+      <div class="r">12. Qin L, Cui Z, Wu Y, Wang H, Zhang X, Guan J, Mao S. Challenges and strategies to enhance the systemic absorption of inhaled peptides and proteins. Pharm Res. 2023;40(5):1037-1055. doi:<a href="https://doi.org/10.1007/s11095-022-03435-3">10.1007/s11095-022-03435-3</a></div>
+      <div class="r">13. Farinha S, Sa JV, Lino PR, Galesio M, Pires J, Rodrigues MA, Henriques J. Spray freeze drying of biologics: a review and applications for inhalation delivery. Pharm Res. 2023;40(5):1115-1140. doi:<a href="https://doi.org/10.1007/s11095-022-03442-4">10.1007/s11095-022-03442-4</a></div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="fgrid">
+    <div class="fbrand">
+      <svg class="brand-logo" role="img" aria-label="Aerogen Pharma" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 603.47 70.8">
+        <path class="cls-2" d="M351.96,14.15h-10.8v19.03h10.8c7.02,0,11.4-3.85,11.4-9.52,0-6.27-4.46-9.52-11.4-9.52M351.66,41.57h-10.5v16.99h-9.29V5.69h20.85c12.31,0,20.09,6.95,20.09,17.75,0,11.93-9.52,18.13-21.15,18.13"/>
+        <path class="cls-2" d="M389.71,58.56h-9.14V3.43h9.14v21.45c2.57-3.78,6.27-7.02,12.46-7.02,8.99,0,14.2,6.04,14.2,15.33v25.38h-9.14v-22.66c0-6.19-3.1-9.74-8.53-9.74s-8.99,3.7-8.99,9.89v22.51Z"/>
+        <path class="cls-2" d="M451.48,41.64c-2.34-.91-5.59-1.58-9.14-1.58-5.74,0-9.14,2.34-9.14,6.42v.15c0,3.78,3.4,5.89,7.7,5.89,6.04,0,10.57-3.4,10.57-8.38v-2.49ZM451.25,58.56v-4.91c-2.72,3.25-6.87,5.74-12.91,5.74-7.55,0-14.2-4.31-14.2-12.31v-.15c0-8.61,6.87-12.84,16.16-12.84,4.83,0,7.93.68,11.03,1.66v-.98c0-5.51-3.47-8.54-9.82-8.54-4.46,0-7.78.98-11.4,2.49l-2.49-7.33c4.38-1.96,8.68-3.32,15.18-3.32,11.78,0,17.52,6.19,17.52,16.84v23.64h-9.06Z"/>
+        <path class="cls-2" d="M477.21,58.56h-9.14V18.68h9.14v8.99c2.49-5.97,7.1-10.04,14.12-9.74v9.67h-.53c-8.01,0-13.59,5.21-13.59,15.78v15.18Z"/>
+        <path class="cls-2" d="M545.78,17.85c8.68,0,13.97,5.51,13.97,15.26v25.45h-9.14v-22.66c0-6.34-2.95-9.74-8.08-9.74s-8.53,3.47-8.53,9.89v22.51h-9.14v-22.73c0-6.19-3.02-9.67-8.08-9.67s-8.53,3.78-8.53,9.97v22.43h-9.14V18.68h9.14v6.04c2.57-3.55,6.04-6.87,12.16-6.87,5.74,0,9.74,2.8,11.86,7.02,3.25-4.23,7.48-7.02,13.52-7.02"/>
+        <path class="cls-2" d="M594.63,41.64c-2.34-.91-5.59-1.58-9.14-1.58-5.74,0-9.14,2.34-9.14,6.42v.15c0,3.78,3.4,5.89,7.7,5.89,6.04,0,10.57-3.4,10.57-8.38v-2.49ZM594.41,58.56v-4.91c-2.72,3.25-6.87,5.74-12.91,5.74-7.55,0-14.2-4.31-14.2-12.31v-.15c0-8.61,6.87-12.84,16.16-12.84,4.83,0,7.93.68,11.03,1.66v-.98c0-5.51-3.47-8.54-9.82-8.54-4.46,0-7.78.98-11.4,2.49l-2.49-7.33c4.38-1.96,8.68-3.32,15.18-3.32,11.78,0,17.52,6.19,17.52,16.84v23.64h-9.06Z"/>
+        <path class="cls-1" d="M308.13,22.07h-.38v-1.22h.38c.82,0,1.44,0,1.44.6s-.6.63-1.44.63M309.32,22.68v-.02c.95-.13,1.25-.76,1.25-1.26,0-.38-.16-.76-.49-1-.36-.26-.62-.26-2.33-.26h-.93v4.51h.93v-1.86h.24c.46,0,.76.07,1.31,1.11l.38.74h1.16l-.55-.92c-.41-.68-.55-.9-.97-1.05"/>
+        <path class="cls-1" d="M308.8,25.77c-1.94,0-3.51-1.52-3.51-3.4s1.57-3.41,3.51-3.41,3.49,1.52,3.49,3.41-1.56,3.4-3.49,3.4M308.8,18.13c-2.41,0-4.37,1.89-4.37,4.24s1.96,4.25,4.37,4.25,4.35-1.9,4.35-4.25-1.95-4.24-4.35-4.24"/>
+        <path class="cls-1" d="M302.27,58.56v-25.46c0-9.22-5.21-15.26-14.2-15.26-6.2,0-9.9,3.25-12.47,6.95v-6.12h-9.14v39.9h9.14v-22.52c0-6.2,3.7-9.9,8.99-9.9s8.54,3.55,8.54,9.75v22.67h9.14ZM258.6,41.86c.08-.91.15-1.74.15-2.57,0-11.49-6.42-21.46-19.12-21.46-11.41,0-19.49,9.37-19.49,20.78v.15c0,12.32,8.92,20.7,20.48,20.7,7.33,0,12.54-2.95,16.32-7.48l-5.37-4.76c-3.17,3.1-6.35,4.76-10.8,4.76-5.89,0-10.5-3.63-11.49-10.12h29.32ZM249.68,35.82h-20.48c.83-6.2,4.76-10.5,10.35-10.5,6.04,0,9.52,4.61,10.12,10.5M207.29,65.44c3.32-3.33,5.06-8.31,5.06-15.04v-31.74h-9.14v5.97c-3.1-3.7-7.25-6.8-13.98-6.8-9.3,0-18.14,6.95-18.14,18.74v.15c0,11.71,8.76,18.66,18.14,18.66,6.57,0,10.73-3.02,14.05-7.33v3.1c0,8.01-4.46,12.24-12.62,12.24-5.44,0-9.9-1.59-14.21-4.23l-3.4,6.87c5.14,3.1,11.26,4.76,17.83,4.76,7.18,0,12.77-1.74,16.4-5.36M203.36,36.65c0,6.5-5.36,10.96-11.71,10.96s-11.33-4.46-11.33-10.96v-.15c0-6.57,4.99-10.96,11.33-10.96s11.71,4.46,11.71,10.96v.15ZM165.36,38.69v-.15c0-11.41-8.99-20.71-21.23-20.71s-21.31,9.45-21.31,20.86v.15c0,11.33,8.99,20.63,21.16,20.63s21.38-9.45,21.38-20.78M156.21,38.84c0,6.88-4.68,12.62-12.09,12.62s-12.17-5.82-12.17-12.77v-.15c0-6.95,4.68-12.69,12.01-12.69s12.24,5.82,12.24,12.85v.15ZM119.41,27.58h.53v-9.67c-7.03-.3-11.64,3.78-14.13,9.75v-8.99h-9.14v39.9h9.14v-15.19c0-10.58,5.59-15.79,13.6-15.79M88.81,41.86c.08-.91.15-1.74.15-2.57,0-11.49-6.42-21.46-19.12-21.46-11.41,0-19.49,9.37-19.49,20.78v.15c0,12.32,8.92,20.7,20.48,20.7,7.33,0,12.54-2.95,16.32-7.48l-5.36-4.76c-3.17,3.1-6.35,4.76-10.81,4.76-5.89,0-10.5-3.63-11.49-10.12h29.32ZM79.9,35.82h-20.48c.83-6.2,4.76-10.5,10.35-10.5,6.04,0,9.52,4.61,10.13,10.5M0,58.56h9.02l5.73-16.72h19.12l5.73,16.72h9.01L28.47,0h-8.33L0,58.56ZM31.8,35.8h-14.98l7.49-21.86,7.49,21.86Z"/>
+      </svg>
+      <p>Advancing innovative aerosol therapies for preterm infants with life-threatening respiratory disease.</p>
+    </div>
+    <div class="fcol"><h4>Company</h4><a href="#">Our Company</a><a href="#">Newsroom</a><a href="#">Culture &amp; Careers</a></div>
+    <div class="fcol"><h4>Science</h4><a href="#">Our Technology</a><a href="#">Pipeline</a><a href="#">Understanding RDS</a></div>
+    <div class="fcol"><h4>Connect</h4><a href="#">Contact Us</a><a href="#">Careers Search</a></div>
+  </div>
+  <div class="fbot"><span>© 2026 Aerogen Pharma. All rights reserved.</span><span>Technology · v2</span></div>
+</footer>
+
+<script>
+/* Ambient "mist" particle field — additive & decorative only.
+   Hero is fully legible without it (CSS gradient + prism light + blade).
+   Colour is read from the canvas data-col attr so it reads on the light ground. */
+(function(){try{
+  var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var c=document.querySelector('canvas.mist'); if(!c||!c.getContext)return;
+  var ctx=c.getContext('2d'),W,H,pts=[],DPR=Math.min(window.devicePixelRatio||1,2);
+  var col=c.getAttribute('data-col')||'0,110,180';
+  function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*DPR;c.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);}
+  function make(){pts=[];var n=Math.round(Math.min(80,W/16));for(var i=0;i<n;i++){pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2.2+0.6,s:Math.random()*0.3+0.06,o:Math.random()*0.34+0.12});}}
+  function dot(p){ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.283);ctx.fillStyle='rgba('+col+','+p.o+')';ctx.fill();}
+  function draw(){for(var i=0;i<pts.length;i++)dot(pts[i]);}
+  function frame(){ctx.clearRect(0,0,W,H);for(var i=0;i<pts.length;i++){var p=pts[i];dot(p);p.y-=p.s;p.x+=Math.sin((p.y+i)*0.01)*0.13;if(p.y<-4){p.y=H+4;p.x=Math.random()*W;}}requestAnimationFrame(frame);}
+  size();make();if(rm){draw();}else{frame();}
+  var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(function(){size();make();},220);});
+}catch(e){/* decorative only — ignore */}})();
+</script>
